@@ -8,7 +8,8 @@
   "scripts": {
     "test": "grunt test",
     "start": "grunt serve",
-    "build": "grunt"
+    "build": "grunt",
+    "dev": "node-sass -w css/style.scss -o css --source-map=true --output-style=compressed & live-server"
   },
   "author": {
     "name": "Hakim El Hattab",
@@ -41,6 +42,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "node-sass": "^4.8.3",
     "reveal.js-menu": "^1.0.0"
   }
 }

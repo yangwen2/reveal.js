@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
-		<link rel="stylesheet" href="css/yang.css">
+		<link rel="stylesheet" href="css/style.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -26,68 +26,216 @@
 	<body>
 		<div class="reveal yang">
 			<div class="slides">
-				<section data-markdown>
+				<section data-markdown id='first'>
 					<textarea data-template>
-						<img src="https://i.stack.imgur.com/qCQxj.jpg" width="175"/>
+						<img src="https://i.stack.imgur.com/qCQxj.jpg" width="175" class="shadow"/>
 						# NGRX patterns
 						### for front-end state management
 						presenter: yang wen | ywen@dcpmidstream.com
 					</textarea>
 				</section>
-				<section data-markdown>
+				<section data-markdown id='whyngrx'>
 					<textarea data-template>
 						### Why NGRX (redux)?
-						- Centralized data for view generation
-						- Consitent conventions across features / teams
-						- Immutable state data enables greater UI performance
-						- Encourages use of sound Angular patterns
+						<ul>
+							<li class="fragment">Centralized data for view generation</li>
+							<li class="fragment">Consistent conventions across features / teams</li>
+							<li class="fragment">Immutable state data enables greater UI performance</li>
+							<li class="fragment">Encourages use of sound Angular patterns</li>
+						</ul>
 					</textarea>
 				</section>
-				<section data-markdown>
+				<section data-markdown id='concepts'>
+					<textarea data-template>
+						### Concepts
+						- [Observable](#/observable)
+						- [Data Normalization](#/normalization)
+						- [View Model](#/viewmodel)
+						- [Selector](#/selector)
+						- [Async Pipe](#/asyncpipe)
+					</textarea>
+				</section>
+				<section data-markdown id="observable">
+					<textarea data-template>
+						### [<](#concepts) Observable
+						<ul>
+						<li class="fragment">NGRX is powered by the Observable RxJS library</li>
+						<li class="fragment">Store emits values to the event bus whenever store gets updated</li>
+						<li class="fragment">Data binding to observable source is inherent in Angular via Async pipe</li>
+						<li class="fragment">NGRX and Angular both support observables,thus enabling<br/>great synergy between the libraries</li>
+					</ul>
+					</textarea>
+				</section>
+				<section data-markdown id="normalization">
 						<textarea data-template>
-							### Concepts
-							- [Observable](#/observable)
-							- [Data Normalization](#/normalization)
-							- View Model
-							- Selector
-							- Async Pipe
+							### [<](#concepts) Normalize Data 
+							- Normalize raw entity data from server
+							- Data stored as key:value pairs, allow for quick lookup
+							- No data duplication means easy to keep the state consistent
+
+							<div style="margin: 20px 0; display: flex; flex-direction: row; justify-content: space-evenly">
+								<div class="fragment" style="width: 50%;">Raw Data:<pre><code data-trim data-noescape>
+									var books = [
+										{
+											id: 1,
+											title: "The Great Gatsby",
+											img: "http://books.com/gg.jpg",
+											author: 4
+										},
+										{
+											id: 2,
+											title: "Free Willy",
+											img: "http://books.com/freewill.jpg",
+											author: 5
+										}];
+
+									var matchedBook = books.find( book => book.id === inputId);
+									</code></pre>
+									
+								</div>
+								<div class="fragment" style="width: 50%;">Normalized Data:<pre><code data-trim data-noescape>
+									var books = {
+										'1': {
+											id: 1,
+											title: "The Great Gatsby",
+											img: "http://books.com/gg.jpg",
+											author: 4
+										},
+										'2': {
+											id: 2,
+											title: "Free Willy",
+											img: "http://books.com/freewill.jpg",
+											author: 5
+										}};
+
+									var matchedBook = books[inputId];
+									</code></pre></div>
+							</div>
 						</textarea>
 					</section>
-					<section data-markdown id="observable">
-						<textarea data-template>
-							### Observable
-							- NGRX is powered by the Observable RxJS library
-							- Store emits values to the event bus whenever store gets updated.
-							- Data binding to observable source is inherent in Angular.
-							- NGRX and Angular both support observables.  
-							Thus enables great synergy between the libraries.
-						</textarea>
-					</section>
-					<section data-markdown id="normalization">
+					<section data-markdown id="viewmodel">
 							<textarea data-template>
-								### Normalize Data
-								- Normalize raw entity data from server
-								- Data stored as key:value pairs, allow for quick lookup
-								<div style="display: flex; flex-direction: column;">
-									<div>Raw Data:<pre><code data-trim data-noescape>
-											{
-												id: 1,
-												title: "Roger"
-											}
+								### [<](#concepts) View Model 
+								- Raw entity data transformed to meet UI requirements
+								- Implemented as an interface definition
 		
-										</code></pre></div>
-									<div>Normalized:<pre><code data-trim data-noescape>
-											{
+								<div style="margin: 20px 0; display: flex; flex-direction: row; justify-content: space-evenly">
+									<div style="width: 50%;">Book Preview ViewModel<pre><code data-trim data-noescape>
+										interface BookPreviewVM {
+											title: string;
+											image: string;
+											author: string;
+										}
+										</code></pre>
+									 <img src="image/covermockup.jpg" width="35%" />
+									</div>
+									<div style="width: 50%;">Normalized Data:<pre><code data-trim data-noescape>
+										const books = {
+											'1': {
 												id: 1,
-												title: "Roger"
+												title: "The Great Gatsby",
+												img: "http://books.com/gg.jpg",
+												author: 4
+											},
+											'2': {
+												id: 2,
+												title: "Free Willy",
+												img: "http://books.com/freewill.jpg",
+												author: 5
+											}};
+											
+										const authors = {
+											"4" : {
+												fName: 'F. Scott',
+												lName: 'Fizgerald'
+												id: 4
+											},
+											"5" : {
+												fName: 'Todd',
+												lName: 'Strasser'
+												id: 5
 											}
-		
+										}
 										</code></pre></div>
 								</div>
 								
 							</textarea>
+							
 						</section>
-			</div>
+						<section data-markdown id="selector">
+								<textarea data-template>
+									### [<](#concepts) Selector 
+									- Pure functions to select a subset(slice) of the store state
+									- Helper functions in the NGRX library allow composition of slices,  
+									and perform performance enhancing memoization of results
+			
+									<div style="margin: 20px 0; display: flex; flex-direction: row; justify-content: space-evenly">
+										<div style="width: 60%;">Selector Function<pre><code data-trim data-noescape>
+											const myCart = state => state.myCart;
+											const allBooks = state => state.books;
+
+											const myCartBooks = createSelector(myCart, allBooks, (myCart, books) => {
+												if (myCart && allBooks){
+													return myCart.map( id => allBooks[id]);
+												} else
+													return undefined;
+											});
+
+											<i>myCartBooks is: [{
+											  "id": 1,
+											  "title": "The Great Gatsby",
+											  "img": "http://books.com/gg.jpg",
+											  "author": 4
+											}]</i>
+											</code></pre>
+										</div>
+										<div style="width: 40%;">Store Data:<pre><code data-trim data-noescape>
+												{
+												 books: {
+													'1': {
+														id: 1,
+														title: "The Great Gatsby",
+														img: "http://books.com/gg.jpg",
+														author: 4
+													},
+													'2': {
+														id: 2,
+														title: "Free Willy",
+														img: "http://books.com/freewill.jpg",
+														author: 5
+												 	}
+												  },
+												 myCart: [1]
+												}
+											</code></pre></div>
+									</div>
+									
+								</textarea>
+								
+							</section>
+
+							<section data-markdown id="asyncpipe">
+									<textarea data-template>
+										### [<](#concepts) Angular Async Pipe 
+										- Subscribes to an observable directly from the template
+										- Automatically Unsubscribes upon componenty destroy
+			
+										<div style="margin: 20px 0; display: flex; flex-direction: row; justify-content: space-evenly">
+											<div class="fragment" style="width: 50%;">Angular Component<pre><code data-trim data-noescape>
+												template: `<div>Current Price: <h2>${{currentPrice | async}}</h2></div>`
+												
+												class TestCompoment = {
+													currentPrice = Observable.of(6);
+												}
+												</code></pre>
+												
+											</div>
+											<div class="fragment" style="width: 50%;">Output:<pre><code data-trim data-noescape>
+												<div style="font-size: 15px; font-family: 'Lato';">Current Price: <h2 class='float-right' style="font-size: 18px;">$6</h1></div>
+												</code></pre></div>
+										</div>
+									</textarea>
+								</section>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -102,6 +250,8 @@
 				height: "100%",
 				transitionSpeed: 'fast',
 				backgroundTransition: 'fade',
+				overview: true,
+				histroy: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
@@ -109,7 +259,9 @@
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'node_modules/reveal.js-menu/menu.js'}
 				
-				]
+				],
+				keyboard: {
+						13: 'next'}
 			});
 		</script>
 	</body>

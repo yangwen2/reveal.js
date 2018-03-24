@@ -13,6 +13,18 @@ body{
 .float-right{
    display: inline-block;
 }
+.hero-image{
+    height: 500px;
+    position: fixed;
+    background-image: url("http://cdn.dribbble.com/users/247560/screenshots/2264095/pattern.jpg");
+    height: 400px;
+    width: 106%;
+    left: -30px;
+    background-size: cover;
+    top: -40px;
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    right: 0;
+}
 .yang {
     color:$lightest !important;
     font-size: 30px;

@@ -26,12 +26,15 @@
 	<body>
 		<div class="reveal yang">
 			<div class="slides">
-				<section data-markdown id='first'>
+				<section data-markdown id='first' data-transition="fade">
 					<textarea data-template>
-						<img src="https://i.stack.imgur.com/qCQxj.jpg" width="175" class="shadow"/>
+						<div class="hero-image"></div>
+						<div style="display: block; height: 50px;"> </div>
 						# NGRX patterns
 						### for front-end state management
-						presenter: yang wen | ywen@dcpmidstream.com
+						presenter: yang wen | ywen@dcpmidstream.com  
+						  
+						hacker session | 3.27.2018
 					</textarea>
 				</section>
 				<section data-markdown id='whyngrx'>
@@ -238,6 +241,12 @@
 										</div>
 									</textarea>
 								</section>
+								<section data-markdown id="codeDemo">
+										<textarea data-template>
+											### Code Demo
+											
+										</textarea>
+									</section>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
@@ -265,6 +274,15 @@
 				keyboard: {
 						13: 'next'}
 			});
+
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+	// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+	console.log(event.currentSlide);
+	if(!event.currentSlide.id){
+		window.location.href = window.location.origin
+	} else
+	window.location.href = window.location.origin + '/#/' + event.currentSlide.id;
+} );
 		</script>
 	</body>
 </html>

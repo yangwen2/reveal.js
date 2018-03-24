@@ -8,7 +8,7 @@ $white: #fff;
 
 
 body{
-    
+    overflow: auto
 }
 .float-right{
    display: inline-block;
@@ -49,11 +49,13 @@ body{
     }
     ul{
         li{
-            padding: 6px 0;
+            padding: 2px 0;
+            font-size: 1.5rem;
         }
     }
 
     pre {
+        margin: 6px auto;
         code {
             font-size: 0.8rem;
         }

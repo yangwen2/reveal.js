@@ -1,0 +1,49 @@
+
+body{
+    
+}
+.yang {
+    color: #ED5856 !important;
+    font-size: 30px;
+}
+h1 {
+    Font-Family: 'Arvo', Serif !important;
+    Font-Size: 44px;
+
+    font-weight: 400;
+    margin: 0 0 23px 0;
+    }
+h2 {
+    font-size: 44px;
+    line-height: 45px;
+    font-weight: 700;
+    font-family: 'Arvo',serif !important;
+    letter-spacing: -2px;
+    color: #131313;
+    margin: 0 0 23px;
+    }
+h3 {
+    font-size: 40px !important;
+    line-height: 30px;
+    font-weight: 400;
+    font-family: 'Arvo',serif !important;
+    letter-spacing: -2px;
+    color: #131313;
+    margin: 0 0 23px;
+}
+p {
+    Font-Family: 'Lato', Sans-Serif !important;
+    Font-Size: 25px !important;
+    line-height: 23px;
+    margin: 0 0 23px 0;
+    font-weight: 400 !important;
+    color: #ED5856;
+    }
+
+.backgrounds{
+    background-color: #ECE34B;
+}
+
+.slide-menu-button i, .yang .controls{
+    color: #999;
+}

@@ -8,9 +8,11 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/yang.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link href="https://fonts.googleapis.com/css?family=Arvo:400,700|Lato:300,400,700" rel="stylesheet">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -22,10 +24,69 @@
 		</script>
 	</head>
 	<body>
-		<div class="reveal">
+		<div class="reveal yang">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-markdown>
+					<textarea data-template>
+						<img src="https://i.stack.imgur.com/qCQxj.jpg" width="175"/>
+						# NGRX patterns
+						### for front-end state management
+						presenter: yang wen | ywen@dcpmidstream.com
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Why NGRX (redux)?
+						- Centralized data for view generation
+						- Consitent conventions across features / teams
+						- Immutable state data enables greater UI performance
+						- Encourages use of sound Angular patterns
+					</textarea>
+				</section>
+				<section data-markdown>
+						<textarea data-template>
+							### Concepts
+							- [Observable](#/observable)
+							- [Data Normalization](#/normalization)
+							- View Model
+							- Selector
+							- Async Pipe
+						</textarea>
+					</section>
+					<section data-markdown id="observable">
+						<textarea data-template>
+							### Observable
+							- NGRX is powered by the Observable RxJS library
+							- Store emits values to the event bus whenever store gets updated.
+							- Data binding to observable source is inherent in Angular.
+							- NGRX and Angular both support observables.  
+							Thus enables great synergy between the libraries.
+						</textarea>
+					</section>
+					<section data-markdown id="normalization">
+							<textarea data-template>
+								### Normalize Data
+								- Normalize raw entity data from server
+								- Data stored as key:value pairs, allow for quick lookup
+								<div style="display: flex; flex-direction: column;">
+									<div>Raw Data:<pre><code data-trim data-noescape>
+											{
+												id: 1,
+												title: "Roger"
+											}
+		
+										</code></pre></div>
+									<div>Normalized:<pre><code data-trim data-noescape>
+											{
+												id: 1,
+												title: "Roger"
+											}
+		
+										</code></pre></div>
+								</div>
+								
+							</textarea>
+						</section>
 			</div>
 		</div>
 
@@ -37,11 +98,17 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				width: "100%",
+				height: "100%",
+				transitionSpeed: 'fast',
+				backgroundTransition: 'fade',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'node_modules/reveal.js-menu/menu.js'}
+				
 				]
 			});
 		</script>

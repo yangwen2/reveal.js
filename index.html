@@ -222,8 +222,8 @@
 							<section data-markdown id="asyncpipe">
 									<textarea data-template>
 										### [<](#concepts) Angular Async Pipe 
-										- Subscribes to an observable directly from the template
-										- Automatically Unsubscribes upon componenty destroy
+										- Subscribes + binds to an observable stream directly from the template
+										- Automatically Unsubscribes upon component destroy
 										- Encourages the use of smart / dumb components pattern
 			
 										<div style="margin: 20px 0; display: flex; flex-direction: row; justify-content: space-evenly">
@@ -236,16 +236,17 @@
 												</code></pre>
 												
 											</div>
-											<div class="fragment" style="width: 50%;">Output:<pre><code data-trim data-noescape>
-												<div style="font-size: 15px; font-family: 'Lato';">Current Price: <h2 class='float-right' style="font-size: 18px;">$6</h1></div>
-												</code></pre></div>
+											<div class="fragment" style="width: 50%;">Output:
+												<pre style='box-shadow: none;'>
+													<div style="font-size: 15px; font-family: 'Lato'; text-align: center; background-color: #eee; color: #000;">Current Price: <h2 class='float-right' style="font-size: 18px; color: #000; font-weight: 400;">$6</h1></div>
+												</pre></div>
 										</div>
 									</textarea>
 								</section>
 								<section data-markdown id="codeDemo">
 										<textarea data-template>
 											### Code Demo
-											
+											<img src="image/app_mock.png" height="550px" class="shadow"/>
 										</textarea>
 									</section>
 		</div>
